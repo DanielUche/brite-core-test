@@ -1,6 +1,5 @@
 <template>
   <div>
-    <br/>{{asynctask}}
     <DataTable
       @deleteDataTableItem="deleteRecord"
       v-if="payments.length"
@@ -39,9 +38,16 @@ export default {
     async edit(data) {
       this.asynctask = 'pending';
       await firebaseCrud.update(COLLECTIONS.payments, data, (data.Key - 1)).then(() => {
-        this.done = true;
+        this.$toasted.show('Record Updated Successfully', {
+          type: 'success',
+          duration: 3000,
+        });
         this.asynctask = 'success';
       }).catch(() => {
+        this.$toasted.show('Record could not be Updated', {
+          type: 'error',
+          duration: 3000,
+        });
         this.asynctask = 'failed';
       });
     },
@@ -50,8 +56,16 @@ export default {
       await firebaseCrud.delete(COLLECTIONS.payments, (data.Key - 1)).then(() => {
         this.$store.dispatch('payments/removePayment', data);
         this.asynctask = 'success';
+        this.$toasted.show('Record Deleted Successfully', {
+          type: 'success',
+          duration: 3000,
+        });
       }).catch((err) => {
         this.asynctask = 'failed';
+        this.$toasted.show('Record could not be Deleted', {
+          type: 'error',
+          duration: 3000,
+        });
         console.log(err);
       });
     },

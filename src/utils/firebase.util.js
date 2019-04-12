@@ -43,7 +43,6 @@ const loginFirebaseUser = () => {
 };
 
 export const loginToFirebase = () => {
-  console.log(config);
   if (!firebase.apps.length) {
     firebaseApp = firebase.initializeApp(config);
     DB = firebaseApp.firestore();

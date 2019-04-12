@@ -1,5 +1,6 @@
 import Vue from 'vue';
 import VueFirestore from 'vue-firestore';
+import Toasted from 'vue-toasted';
 import App from './App.vue';
 import router from './router';
 import store from './store';
@@ -11,7 +12,9 @@ const numeral = require('numeral');
 
 Vue.config.productionTip = false;
 
+Vue.use(Toasted);
 Vue.use(VueFirestore);
+
 
 Vue.filter('numeral', value => numeral(value).format('0,0'));
 
