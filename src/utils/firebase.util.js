@@ -4,16 +4,16 @@ require('@firebase/firestore');
 require('firebase/auth');
 
 const config = {
-  apiKey: process.env.FIREBASE_API_KEY,
-  authDomain: process.env.FIREBASE_AUTH_DOMAIN,
-  databaseURL: process.env.FIREBASE_DATABASE_URL,
-  projectId: process.env.FIREBASE_PROJECT_ID,
+  apiKey: `${process.env.VUE_APP_FIREBASE_API_KEY}`,
+  authDomain: `${process.env.VUE_APP_FIREBASE_AUTH_DOMAIN}`,
+  databaseURL: `${process.env.VUE_APP_FIREBASE_DATABASE_URL}`,
+  projectId: `${process.env.VUE_APP_FIREBASE_PROJECT_ID}`,
 };
 
 let firebaseApp = firebase.initializeApp(config);
-let db = firebaseApp.firestore();
-const email = process.env.FIREBASE_AUTH_USER_EMAIL;
-const password = process.env.FIREBASE_AUTH_USER_PASSWORD;
+let DB = firebaseApp.firestore();
+const email = process.env.VUE_APP_FIREBASE_AUTH_USER_EMAIL;
+const password = process.env.VUE_APP_FIREBASE_AUTH_USER_PASSWORD;
 
 const createFirebaseUser = () => {
   console.log('Creating Firebase User');
@@ -42,23 +42,20 @@ const loginFirebaseUser = () => {
     });
 };
 
-const loginToFirebase = () => {
+export const loginToFirebase = () => {
+  console.log(config);
   if (!firebase.apps.length) {
     firebaseApp = firebase.initializeApp(config);
-    db = firebaseApp.firestore();
+    DB = firebaseApp.firestore();
   }
   return new Promise(resolve => resolve(loginFirebaseUser(email, password)));
 };
 
-const firebaseCrud = {
-  create: async (collection, data) => db.collection(collection).add(data),
-  update: async (collection, data, index) => db.collection(collection).doc(`${index}`).set(data),
-  delete: async (collection, index) => db.collection(collection).doc(`${index}`).delete(),
-  read: async collection => db.collection(collection).get(),
+export const firebaseCrud = {
+  create: async (collection, data) => DB.collection(collection).add(data),
+  update: async (collection, data, index) => DB.collection(collection).doc(`${index}`).set(data),
+  delete: async (collection, index) => DB.collection(collection).doc(`${index}`).delete(),
+  read: async collection => DB.collection(collection).get(),
 };
 
-module.exports = {
-  loginToFirebase,
-  db,
-  firebaseCrud,
-};
+export const db = DB;
