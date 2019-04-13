@@ -4,6 +4,7 @@
       @deleteDataTableItem="deleteRecord"
       v-if="payments.length"
       :items="payments"
+      :columns="columns"
       keyField="ID" hasActions
       :asyncTask="asynctask"/>
   </div>
@@ -21,6 +22,14 @@ export default {
   data() {
     return {
       asynctask: '',
+      columns: [
+        { name: 'Key', key: true, sortable: true },
+        { name: 'Name', sortable: true, editable: true },
+        { name: 'Description', sortable: true, editable: true },
+        {
+          name: 'Amount', key: true, sortable: true, editable: true,
+        },
+        { name: 'Date', sortable: true, editable: true }],
     };
   },
   computed: mapState({

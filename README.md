@@ -1,4 +1,4 @@
-# Brite Core Frontend Test Vue
+# Datatable Vue Challenge
 
 [![Build Status](https://travis-ci.com/DanielUche/brite-core-test.svg?branch=develop)](https://travis-ci.org/joemccann/dillinger)
 
@@ -38,6 +38,12 @@ DataTable
 | columns | identifies columns in your dataset | required |
 
 
+#### Column Format
+
+columns: [
+        { name: 'Key', key: true, sortable: true },
+        { name: 'Name', sortable: true, editable: true }],
+
 # The Aproach
 A datatable should at the minimum consist of 
   - A paginator component.
@@ -57,14 +63,17 @@ My implimentation uses.
   - Setting current page.
   - buttons to displat per page
   - A dropdown to change number of items displayed per page.
+
  **NB**: The paginator component serves as the parent container for both the table and input controls for the datatabe. The paginator uses emitters and listeners internally.
 
 - A **Table** component:
   - Present the data to the user.
+
   **NB**: Data is passed to the table component as props from the paginator component.
 
 - A **Modal** component:
   - Present currently selected item to the user and allows one edit it.
+
 **NB**: Data is passed to the modal component as props from the table component component.
 
 Other Components Include:
@@ -75,6 +84,18 @@ An input component to search the list.
 
 ### Development
 
-Want to contribute? Great!
+1. Clone repo.
+2. Rename .env.template to .env and provide values.
+3. node src/init-db.js to initialize firestore database.
+
+```
+npm run serve
+````
+
+##### Testing
+```
+npm run test
+```
+
 
 
