@@ -1,21 +1,26 @@
 
 import { expect } from 'chai';
-// import { shallowMount } from '@vue/test-utils';
-import Table from '@/components/data-table/Table.component.vue';
-
-require('jsdom-global')();
+import { shallowMount } from '@vue/test-utils';
+import Table from '../../../src/components/data-table/Table.component.vue';
 
 describe('Table.component.vue Created', () => {
-//   it('renders props.msg when passed', () => {
-//     const msg = 'new message';
-//     const wrapper = shallowMount(Table, {
-//       propsData: { msg },
-//     });
-//     expect(wrapper.text()).to.include(msg);
-//   });
+  it('Should Render Table Component when Required Props is Passed', () => {
+    const columns = [
+      { name: 'Key', key: true, sortable: true },
+      { name: 'Name', sortable: true, editable: true },
+      { name: 'Description', sortable: true, editable: true },
+      {
+        name: 'Amount', key: true, sortable: true, editable: true,
+      },
+      { name: 'Date', sortable: true, editable: true }];
+    const wrapper = shallowMount(Table, {
+      propsData: { columns, data: [] },
+    });
+    expect(wrapper.vm.columns).to.equal(columns);
+  });
 
   // Inspect the raw component options
-  it('has a created hook', () => {
+  it('Table.component: has a created hook', () => {
     expect(Table.created).to.be.a('function');
   });
 

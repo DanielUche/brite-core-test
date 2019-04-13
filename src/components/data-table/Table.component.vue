@@ -65,7 +65,7 @@
 </template>
 <script>
 import * as _ from 'lodash';
-import Icon from 'vue-awesome/components/Icon';
+import Icon from 'vue-awesome/components/Icon.vue';
 
 export default {
   props: {
@@ -114,7 +114,7 @@ export default {
     },
   },
   components: {
-    'v-icon': Icon
+    'v-icon': Icon,
   },
 };
 </script>
