@@ -1,21 +1,26 @@
 import Vue from 'vue';
 import VueFirestore from 'vue-firestore';
 import Toasted from 'vue-toasted';
+import 'vue-awesome/icons/flag';
+// or import all icons if you don't care about bundle size
+import 'vue-awesome/icons';
+import Icon from 'vue-awesome/components/Icon';
+
+
 import App from './App.vue';
 import router from './router';
 import store from './store';
 import './registerServiceWorker';
-import '../node_modules/bulma/css/bulma.css';
+import './style.scss';
+
+// globally (in your main .js file)
 
 const numeral = require('numeral');
 
-
 Vue.config.productionTip = false;
-
-Vue.use(Toasted);
+Vue.use(Toasted, { duration: 3000 });
 Vue.use(VueFirestore);
-
-
+Vue.component('v-icon', Icon);
 Vue.filter('numeral', value => numeral(value).format('0,0'));
 
 Vue.config.devtools = process.env.NODE_ENV === 'development';
