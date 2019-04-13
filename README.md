@@ -1,8 +1,12 @@
-# Datatable Vue Challenge
+# Datatable Vue
 
 [![Build Status](https://travis-ci.com/DanielUche/brite-core-test.svg?branch=develop)](https://travis-ci.org/joemccann/dillinger)
 
 A challenge to implement a customizable vue.js datatable.
+
+
+![datatable](https://github.com/DanielUche/vue-data-table/master/blob/screenshot.png`)
+
 
 # Usage
 
