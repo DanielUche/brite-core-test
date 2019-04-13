@@ -1,7 +1,5 @@
 <template>
   <div>
-    <v-icon name="sort-amount-down"/>
-    <v-icon name="sort-amount-up"/>
     <DataTable
       @deleteDataTableItem="deleteRecord"
       v-if="payments.length"
