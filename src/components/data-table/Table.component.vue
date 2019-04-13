@@ -3,10 +3,30 @@
     <table class="table is-striped is-narrow is-hoverable is-bordered is-fullwidth">
       <thead>
         <tr>
-          <th :key="`th-${cid}`" v-for="(column, cid) in columns">
-            {{ column.name }} 
-             <v-icon name="sort-amount-down" v-if="!sort[column.name]"/>
-             <v-icon name="sort-amount-up" v-if="sort[column.name]"/>
+          <th class="itemcolumn"
+            :key="`th-${cid}`"
+            v-for="(column, cid) in columns"
+            @click="sortItem(column.name)">
+
+            <nav class="level">
+              <!-- Left side -->
+              <div class="level-left">
+                <div class="level-item">
+                  {{ column.name }}
+                </div>
+              </div>
+
+              <!-- Right side -->
+              <div class="level-right">
+                <p class="level-item">
+                  <span class="tag is-white" style="color: rgb(171, 170, 170)">
+                    <v-icon name="sort-amount-down" v-if="sort[column.name] === 'asc'"/>
+                    <v-icon name="sort-amount-up" v-else-if="sort[column.name] === 'desc'"/>
+                    <v-icon name="sort" v-else/>
+                  </span>
+                </p>
+              </div>
+            </nav>
           </th>
           <th v-if="hasActions">
             Actions
@@ -15,7 +35,7 @@
       </thead>
       <tbody v-if="data.length">
         <tr
-          v-for="(item, index) in data"
+          v-for="(item, index) in sortedItems"
           :key="index"
         >
           <td
@@ -44,6 +64,8 @@
   </div>
 </template>
 <script>
+import * as _ from 'lodash';
+import Icon from 'vue-awesome/components/Icon';
 
 export default {
   props: {
@@ -60,19 +82,50 @@ export default {
       required: false,
     },
   },
+  watch: {
+    data() {
+      this.sortedItems = this.data;
+    },
+  },
+  created() {
+    this.sortedItems = this.data;
+  },
   data() {
-    let sort = {};
-    this.columns.map((c) => {
-      sort[c.name] = false;
-    });
     return {
-      sort
+      sort: {},
+      sortedItems: [],
+
     };
+  },
+  methods: {
+    SortItem(column, direction) {
+      this.sortedItems = _.orderBy(this.data, [column], [direction]);
+    },
+    sortItem(column) {
+      switch (this.sort[column]) {
+        case 'asc':
+          this.sort[column] = 'desc';
+          break;
+        case 'desc':
+          this.sort[column] = 'asc';
+          break;
+        default: this.sort[column] = 'asc';
+      }
+      this.SortItem(column, this.sort[column]);
+    },
+  },
+  components: {
+    'v-icon': Icon
   },
 };
 </script>
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped lang="scss">
-
+  .sort {
+    color: rgb(171, 170, 170);
+  }
+  .itemcolumn {
+    cursor: pointer;
+  }
 </style>

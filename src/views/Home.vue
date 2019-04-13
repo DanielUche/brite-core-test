@@ -1,7 +1,5 @@
 <template>
   <div>
-    <v-icon name="sort-amount-down"/>
-    <v-icon name="sort-amount-up"/>
     <DataTable
       @deleteDataTableItem="deleteRecord"
       v-if="payments.length"
@@ -13,7 +11,6 @@
 
 <script>
 import { mapState } from 'vuex';
-import Icon from 'vue-awesome/components/Icon'
 // @ is an alias to /src
 import DataTable from '@/components/data-table/Paginator.component.vue';
 import { firebaseCrud, loginToFirebase } from '../utils/firebase.util';
@@ -68,7 +65,7 @@ export default {
     },
   },
   components: {
-    DataTable, 'v-icon': Icon
+    DataTable,
   },
 };
 </script>
