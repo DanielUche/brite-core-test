@@ -1,45 +1,55 @@
 <template>
   <div>
-    <div class="level">
+    <nav class="level">
       <div class="level-left">
         <div class="level-item">
+          <div class="select is-small">
+            <select
+              v-model="pagination.itemPerPage"
+              @change="onLengthChange($event)">
+              <option value="15">15</option>
+              <option value="20">20</option>
+              <option value="25">25</option>
+              <option value="30">30</option>
+              <option value="50">50</option>
+              <option value="100">100</option>
+            </select>
+          </div>
+        </div>
+        <div class="level-item">
+          <p class="subtitle is-5">
+             Items Per Page
+          </p>
+        </div>
+      </div>
+      <div class="level-right">
+        <div class="level-item">
           <input
-            class="input"
+            class="input is-small"
             v-model="searchValue"
             v-on:keyup="searchList(searchValue)"
             type="text"
             placeholder="Search List">
         </div>
-      </div>
-      <div class="level-right">
         <div class="level-item">
-          <div class="field is-horizontal">
-            <div class="field-label is-normal">
-              <label class="label">Length</label>
-            </div>
-            <div class="field-body">
-              <div class="field is-narrow">
-                <div class="control">
-                  <div class="select is-fullwidth">
-                    <select
-                      v-model="pagination.itemPerPage"
-                      @change="onLengthChange($event)">
-                      <option value="10">10</option>
-                      <option value="15">15</option>
-                      <option value="20">20</option>
-                      <option value="25">25</option>
-                      <option value="30">30</option>
-                      <option value="50">50</option>
-                      <option value="100">100</option>
-                    </select>
-                  </div>
-                </div>
-              </div>
-            </div>
+          <div class="select is-small">
+            <select
+              v-model="exportType"
+              @change="setExportType($event)">
+              <option value="" selected>Select Formats</option>
+              <option value="csv">CSV</option>
+              <option value="excel">Excel</option>
+            </select>
+          </div>
+          <div class="level-item">
+            <button
+              @click="download()"
+              style="margin-left:5px"
+              class="button is-small is-primary">Export</button>
           </div>
         </div>
       </div>
-    </div>
+    </nav>
     <div class="columns">
       <div class="column">
         <Table
@@ -51,7 +61,7 @@
       </div>
     </div>
     <div>
-      <nav class="pagination" role="navigation" aria-label="pagination">
+      <nav class="pagination is-small" role="navigation" aria-label="pagination">
         <a
             class="pagination-previous"
             v-on:click="selectPage(pagination.currentPage > 1 ? pagination.currentPage-1 : 1)"
@@ -109,6 +119,7 @@
 
 <script>
 import * as _ from 'lodash';
+import XlsExport from 'xlsexport';
 
 import Table from './Table.component.vue';
 import Modal from './Modal.component.vue';
@@ -138,6 +149,7 @@ export default {
   },
   data() {
     return {
+      exportType: '',
       columns: [
         { name: 'Key', key: true, sortable: true },
         { name: 'Name', sortable: true, editable: true },
@@ -153,7 +165,7 @@ export default {
       pagination: {
         range: 10,
         currentPage: 1,
-        itemPerPage: 10,
+        itemPerPage: 15,
         items: [],
         filteredItems: [],
       },
@@ -171,7 +183,6 @@ export default {
     this.filteredItems = this.items;
     this.buildPagination();
     this.selectPage(1);
-
     // if hasacttion is provided the user must provide a key
     // else threow an error
     if (this.hssActions && !this.keyField) {
@@ -186,6 +197,22 @@ export default {
       this.pagination.itemPerPage = event.target.value;
       this.buildPagination();
       this.selectPage(1);
+    },
+    setExportType(event) {
+      const { value } = event.target;
+      this.exportType = value;
+    },
+    download() {
+      const xls = new XlsExport(this.filteredItems, 'DataTable');
+      switch (this.exportType) {
+        case 'excel':
+          xls.exportToXLS('datatable.xlsx');
+          break;
+        case 'csv':
+          xls.exportToCSV('datatable.csv');
+          break;
+        default: throw new Error('Invalid format selected');
+      }
     },
     searchList(searchText) {
       if (_.isUndefined(searchText)) {
