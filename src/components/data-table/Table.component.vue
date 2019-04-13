@@ -94,7 +94,6 @@ export default {
     return {
       sort: {},
       sortedItems: [],
-
     };
   },
   methods: {
