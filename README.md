@@ -5,7 +5,7 @@
 A challenge to implement a customizable vue.js datatable.
 
 
-![datatable](https://github.com/DanielUche/vue-data-table/blob/master/screenshot.png`)
+![datatable](https://github.com/DanielUche/vue-data-table/blob/develop/screenshot.png)
 
 
 # Usage
