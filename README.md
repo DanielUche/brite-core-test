@@ -1,39 +1,14 @@
-# brite-core-test
+# Brite Core Frontend Test Vue
 
-## Project setup
-```
-npm install
-```
+[![Build Status](https://travis-ci.com/DanielUche/brite-core-test.svg?branch=develop)](https://travis-ci.org/joemccann/dillinger)
 
-### Compiles and hot-reloads for development
-```
-npm run serve
-```
+A challenge to implement a customizable vu.js datatable.
 
-### Compiles and minifies for production
-```
-npm run build
-```
+# The Aproach
 
-### Run your tests
-```
-npm run test
-```
-
-### Lints and fixes files
-```
-npm run lint
-```
-
-### Run your end-to-end tests
-```
-npm run test:e2e
-```
-
-### Run your unit tests
-```
-npm run test:unit
-```
-
-### Customize configuration
-See [Configuration Reference](https://cli.vuejs.org/config/).
+A datatable should at the minimum consist of 
+    1. A paginator component.
+    2. A table to display the data.
+    3. A dropdown to change number of items displayed per page.
+    4. A textbox to enable filtering the table.
+    5. Ability to export data in different formats.
