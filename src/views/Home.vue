@@ -1,5 +1,7 @@
 <template>
   <div>
+    <v-icon name="sort-amount-down"/>
+    <v-icon name="sort-amount-up"/>
     <DataTable
       @deleteDataTableItem="deleteRecord"
       v-if="payments.length"
@@ -11,10 +13,10 @@
 
 <script>
 import { mapState } from 'vuex';
+import Icon from 'vue-awesome/components/Icon'
 // @ is an alias to /src
 import DataTable from '@/components/data-table/Paginator.component.vue';
 import { firebaseCrud, loginToFirebase } from '../utils/firebase.util';
-
 import { COLLECTIONS } from '../../constant';
 
 export default {
@@ -40,13 +42,11 @@ export default {
       await firebaseCrud.update(COLLECTIONS.payments, data, (data.Key - 1)).then(() => {
         this.$toasted.show('Record Updated Successfully', {
           type: 'success',
-          duration: 3000,
         });
         this.asynctask = 'success';
       }).catch(() => {
         this.$toasted.show('Record could not be Updated', {
           type: 'error',
-          duration: 3000,
         });
         this.asynctask = 'failed';
       });
@@ -58,20 +58,17 @@ export default {
         this.asynctask = 'success';
         this.$toasted.show('Record Deleted Successfully', {
           type: 'success',
-          duration: 3000,
         });
-      }).catch((err) => {
+      }).catch(() => {
         this.asynctask = 'failed';
         this.$toasted.show('Record could not be Deleted', {
           type: 'error',
-          duration: 3000,
         });
-        console.log(err);
       });
     },
   },
   components: {
-    DataTable,
+    DataTable, 'v-icon': Icon
   },
 };
 </script>

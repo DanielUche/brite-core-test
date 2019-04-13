@@ -1,15 +1,19 @@
 <template>
   <div>
-    <table class="table is-striped is-hoverable is-bordered is-fullwidth">
+    <table class="table is-striped is-narrow is-hoverable is-bordered is-fullwidth">
       <thead>
         <tr>
-          <th :key="`th-${cid}`" v-for="(column, cid) in columns"> {{ column.name }} </th>
-            <th v-if="hasActions">
-              Actions
-            </th>
+          <th :key="`th-${cid}`" v-for="(column, cid) in columns">
+            {{ column.name }} 
+             <v-icon name="sort-amount-down" v-if="!sort[column.name]"/>
+             <v-icon name="sort-amount-up" v-if="sort[column.name]"/>
+          </th>
+          <th v-if="hasActions">
+            Actions
+          </th>
         </tr>
       </thead>
-      <tbody>
+      <tbody v-if="data.length">
         <tr
           v-for="(item, index) in data"
           :key="index"
@@ -26,6 +30,13 @@
               <a class="button is-danger"
                 @click="$emit('deleteDataTableItem', item)">Delete</a>
             </div>
+          </td>
+        </tr>
+      </tbody>
+      <tbody v-else>
+        <tr>
+          <td :colspan="columns.length + 1" >
+              No record found in the table
           </td>
         </tr>
       </tbody>
@@ -48,6 +59,15 @@ export default {
       type: Boolean,
       required: false,
     },
+  },
+  data() {
+    let sort = {};
+    this.columns.map((c) => {
+      sort[c.name] = false;
+    });
+    return {
+      sort
+    };
   },
 };
 </script>
