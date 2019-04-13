@@ -38,6 +38,12 @@ DataTable
 | columns | identifies columns in your dataset | required |
 
 
+#### Column Format
+
+columns: [
+        { name: 'Key', key: true, sortable: true },
+        { name: 'Name', sortable: true, editable: true }],
+
 # The Aproach
 A datatable should at the minimum consist of 
   - A paginator component.
