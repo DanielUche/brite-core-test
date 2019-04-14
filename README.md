@@ -55,7 +55,7 @@ A datatable should at the minimum consist of
   - A dropdown to change number of items displayed per page.
   - A textbox to enable filtering the table.
   - Ability to export data in different formats.
-  - Actionable column contaning buttons perform an operation on each item on the table.
+  - Actionable column contaning buttons to perform an operation on items on the table.
 ##### Advanced features can include but not limited to:
 -   Adavance and user composable filter.
 -   Customizable table i.e allow user to determine table, paginator styling.
@@ -65,7 +65,7 @@ A datatable should at the minimum consist of
 My implimentation uses.
 - A **Paginator** component to determine how many items to display per page, the paginator also handles:
   - Setting current page.
-  - buttons to displat per page
+  - buttons to display per page
   - A dropdown to change number of items displayed per page.
 
  **NB**: The paginator component serves as the parent container for both the table and input controls for the datatabe. The paginator uses emitters and listeners internally.
@@ -76,7 +76,7 @@ My implimentation uses.
   **NB**: Data is passed to the table component as props from the paginator component.
 
 - A **Modal** component:
-  - Present currently selected item to the user and allows one edit it.
+  - Present currently selected item to the user and allows a user to edit it.
 
 **NB**: Data is passed to the modal component as props from the table component component.
 
