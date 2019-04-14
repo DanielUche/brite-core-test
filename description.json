@@ -1,0 +1,23 @@
+{
+    "name": "Daniel Uche",
+    "email": "dank.uche@yahoo.com",
+    "email2": "dank.uchedaniel@gmail.com",
+    "location": "Kano, Nigeria",
+    "gender": "Male",
+    "github": "@DanielUche",
+    "website": "danieluche.info",
+    "experience": "6+",
+    "current_employer": "Ehealth Africa",
+    "prev_employer": "AlatByWema",
+    "current_job_title": "Full Stack Javascript Developer with focus on GIS technologies",
+    "hobby": "Reading, playing football, IT Research",
+    "schools": "Georgia Tech (Current), University of ilorin (PDG), Yaba College of Technology (HND)",
+    "Specialization": "Computer Science",
+    "tech_stacks": "Node.js, express, react, angular, vue.js, redux, graphQL, laravel, php, python, C#",
+    "database_skills": "firebase, mongoDB, postgres, mysql, msSql",
+    "cloud": "GCP",
+    "other_skills": "collaboration, peer programming, team player",
+    "interest": "Everything technology",
+    "5_year_goal": "Expert in Machine Learning and artificial intelligence",
+    "Popular_qoutes": "The biggest and most successfully softwares began with a single line of code. If they can do it i too can do it"
+}

@@ -98,8 +98,32 @@ npm run serve
 
 ##### Testing
 ```
-npm run test
+npm run test-unit
 ```
 
+### How Long I Spent on the project ?
+A week
 
+### In what ways would you adapt your component so that it could be used in many different scenarios where a data table is required?
+
+1. I will add ability for the users to provide custom styling for the component.
+2. Add functionality for async and server side pagination.
+
+
+### What CSS property did you recently learn about that helped you on a project?
+
+animation-delay
+
+I used this to add the page loader on the landing page.
+
+
+
+### What is your favorite modern Javascript feature? Why?
+
+My favourite JS library is vue.js because of its simplicity. Coming from an angular and react background vue.js proved much more easier.
+
+
+### What is your favorite third-party Vue.js library? Why?
+
+Buefy https://buefy.org/ because it provides me with a lot of components out of the box
 

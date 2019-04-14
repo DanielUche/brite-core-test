@@ -8,13 +8,17 @@ const payments = db.collection(COLLECTIONS.payments);
 export default {
   namespaced: true,
   state: {
-    loading: false,
+    loading: true,
     payments: [],
   },
   getters: {},
   mutations: {
     getPayments(state, data) {
       state.payments = data;
+      state.loading = false;
+    },
+    getLoading(state, data) {
+      state.loading = data;
     },
     removePayment(state, data) {
       const list = state.payments.filter(p => p.Key !== data.Key);
@@ -23,6 +27,7 @@ export default {
   },
   actions: {
     getPayments({ commit }) {
+      commit('getLoading', true);
       payments.get().then((payment) => {
         const data = [];
         payment.forEach((doc) => {
