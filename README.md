@@ -4,6 +4,8 @@
 
 A challenge to implement a customizable vue.js datatable.
 
+link https://contactlist-209a9.firebaseapp.com/
+
 
 ![datatable](https://github.com/DanielUche/vue-data-table/blob/develop/screenshot.png)
 
