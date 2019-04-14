@@ -131,7 +131,7 @@ export default {
       required: false,
     },
     columns: {
-      type: String,
+      type: Array,
       required: true,
     },
     items: {
