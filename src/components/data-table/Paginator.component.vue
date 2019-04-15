@@ -130,6 +130,10 @@ export default {
       type: String,
       required: false,
     },
+    columns: {
+      type: Array,
+      required: true,
+    },
     items: {
       type: Array,
       required: true,
@@ -150,14 +154,6 @@ export default {
   data() {
     return {
       exportType: '',
-      columns: [
-        { name: 'Key', key: true, sortable: true },
-        { name: 'Name', sortable: true, editable: true },
-        { name: 'Description', sortable: true, editable: true },
-        {
-          name: 'Amount', key: true, sortable: true, editable: true,
-        },
-        { name: 'Date', sortable: true, editable: true }],
       paginatedItems: [],
       searchValue: '',
       selectedItem: {},
